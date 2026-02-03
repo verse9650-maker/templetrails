@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TempleTrails – Explore Heritage & Book Guides</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body { margin:0; padding:0; font-family:'Poppins',sans-serif; background:#f5f1e8; color:#333 }
+    header{background:linear-gradient(120deg,#8c5e25,#c88e3a);color:#fff;padding:40px 20px;text-align:center;border-bottom-left-radius:30px;border-bottom-right-radius:30px}
+    header h1{font-size:42px;margin:0;font-weight:700}
+    header p{margin-top:10px;font-size:18px;opacity:.9}
+    nav{display:flex;justify-content:center;gap:30px;padding:15px;position:sticky;top:0;background:#fff;box-shadow:0 4px 12px rgba(0,0,0,.1);z-index:20}
+    nav a{text-decoration:none;color:#8c5e25;font-weight:600;font-size:16px;transition:.2s}
+    nav a:hover{color:#c88e3a}
+    .hero{height:450px;background:url('https://images.unsplash.com/photo-1604668915840-9fe3c3141e75') center/cover;display:flex;align-items:center;justify-content:center;color:#fff;text-align:center;padding:20px;position:relative}
+    .hero::after{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.55)}
+    .hero h2{font-size:34px;font-weight:600;max-width:700px;position:relative;z-index:2}
+    .section{max-width:1100px;margin:auto;padding:50px 20px}
+    .section h2{font-size:32px;font-weight:600;color:#8c5e25;margin-bottom:25px}
+    .card{background:#fff;padding:25px;border-radius:16px;box-shadow:0 8px 18px rgba(0,0,0,.12);margin-bottom:20px;transition:transform .2s}
+    .card:hover{transform:translateY(-4px)}
+    .btn{display:inline-block;padding:12px 22px;background:#8c5e25;color:#fff;border-radius:8px;text-decoration:none;margin-top:10px;font-weight:500;transition:.2s;border:none;cursor:pointer}
+    .btn:hover{background:#c88e3a}
+    #searchContainer{position:relative;width:100%}
+    #searchBar{width:100%;padding:15px;border-radius:10px;border:1px solid #ccc;font-size:17px;box-shadow:0 4px 12px rgba(0,0,0,.08)}
+    #suggestions{position:absolute;background:#fff;width:100%;border-radius:10px;box-shadow:0 6px 18px rgba(0,0,0,.15);max-height:200px;overflow-y:auto;display:none;z-index:50}
+    #suggestions div{padding:12px;cursor:pointer;transition:.2s}
+    #suggestions div:hover{background:#f5e6cd}
+    footer{background:#8c5e25;color:#fff;text-align:center;padding:18px;margin-top:60px}
+    input[type="text"], input[type="email"], input[type="tel"], input[type="number"], select, textarea, input[type="date"] {
+      width:100%; padding:10px; border-radius:8px; border:1px solid #d0c9bf; box-sizing:border-box;
+    }
+    label { font-weight:500; display:block; }
+    .two-col { display:grid; grid-template-columns: 1fr 1fr; gap:20px; }
+    @media (max-width:640px){header h1{font-size:28px}.hero{height:360px}.section{padding:30px 14px}.two-col{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>TempleTrails</h1>
+  <p>Explore Heritage • Discover Temples • Book Expert Guides</p>
+</header>
+
+<nav>
+  <a href="#guides">Guides</a>
+  <a href="#heritage">Heritage</a>
+  <a href="#booking">Booking</a>
+  <a href="#contact">Contact</a>
+  <a href="#temple-visit-booking">Book Visit</a>
+  <a href="#temple-feedback">Feedback</a>
+  <a href="#temple-suggestion">Suggest</a>
+  <a href="#admin-login">Admin</a>
+</nav>
+
+<section class="hero">
+  <h2>Immerse yourself in India's divine heritage — Explore temples, cultures, traditions, and book expert guides effortlessly.</h2>
+</section>
+
+<section class="section" id="heritage">
+  <h2>Search Temples & Heritage Locations</h2>
+  <div id="searchContainer">
+    <input id="searchBar" aria-label="Search temples" placeholder="Search for temples or heritage sites..." />
+    <div id="suggestions" role="listbox" aria-label="Search suggestions"></div>
+  </div>
+  <div id="results" aria-live="polite" style="margin-top:20px"></div>
+
+  <!-- Heritage Image Cards -->
+  <div class="card" style="display:flex;gap:20px;align-items:center;">
+    <img src="brihadeeshwara-temple.png" width="180" height="150" style="border-radius:12px; object-fit:cover;" alt="Brihadeeswarar"/>
+    <div>
+      <h3>Brihadeeswarar Temple</h3>
+      <p>The UNESCO World Heritage Chola masterpiece in Thanjavur.</p>
+    </div>
+  </div>
+
+  <div class="card" style="display:flex;gap:20px;align-items:center;">
+    <img src="Meenakshi Amman Templ.png" width="180" height="120" style="border-radius:12px;object-fit:cover;" alt="Meenakshi"/>
+    <div>
+      <h3>Meenakshi Amman Temple</h3>
+      <p>The vibrant Dravidian architectural wonder of Madurai.</p>
+    </div>
+  </div>
+
+  <div class="card" style="display:flex;gap:20px;align-items:center;">
+    <img src="Konark Sun Temple.png" width="180" height="120" style="border-radius:12px;object-fit:cover;" alt="Konark"/>
+    <div>
+      <h3>Konark Sun Temple</h3>
+      <p>An iconic 13th‑century sun chariot temple in Odisha.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="guides">
+  <h2>Top Expert Guides</h2>
+  <div class="card">
+    <h3>Ravi Kumar</h3>
+    <p>Expert in South Indian temple history and rituals.</p>
+    <a href="#booking" class="btn">Book Now</a>
+  </div>
+  <div class="card">
+    <h3>Anita Sharma</h3>
+    <p>Specialist in North Indian heritage routes and mythology.</p>
+    <a href="#booking" class="btn">Book Now</a>
+  </div>
+</section>
+
+<section class="section" id="booking">
+  <h2>Quick Booking</h2>
+  <div class="card">
+    <form id="quickBookingForm">
+      <div class="two-col">
+        <label>Full Name<br><input name="name" type="text" required aria-label="name"></label>
+        <label>Email<br><input name="email" type="email" required aria-label="email"></label>
+      </div>
+      <br>
+      <label>Temple (optional)<br>
+        <select name="temple">
+          <option value="">— choose —</option>
+          <option>Brihadeeswarar Temple</option>
+          <option>Meenakshi Amman Temple</option>
+          <option>Konark Sun Temple</option>
+        </select>
+      </label><br><br>
+      <label>Need a Guide?<br>
+        <select name="needGuide">
+          <option>Yes</option>
+          <option>No</option>
+        </select>
+      </label><br><br>
+      <button class="btn" type="submit">Request Quick Booking</button>
+    </form>
+  </div>
+</section>
+
+<!-- USER: Temple Visit Booking Form -->
+<section class="section" id="temple-visit-booking">
+  <h2>Temple Visit Booking</h2>
+  <div class="card">
+    <form id="visitBookingForm">
+      <div class="two-col">
+        <label>Full Name<br><input name="name" type="text" required></label>
+        <label>Email<br><input name="email" type="email" required></label>
+      </div><br>
+      <div class="two-col">
+        <label>Phone<br><input name="phone" type="tel" required></label>
+        <label>Select Temple<br>
+          <select name="temple" id="visitTempleSelect">
+            <option>Brihadeeswarar Temple</option>
+            <option>Meenakshi Amman Temple</option>
+            <option>Konark Sun Temple</option>
+          </select>
+        </label>
+      </div><br>
+      <div class="two-col">
+        <label>Visit Date<br><input name="date" type="date" required></label>
+        <label>Number of People<br><input name="people" type="number" min="1" value="1" required></label>
+      </div><br>
+      <div class="two-col">
+        <label>Need a Guide?<br>
+          <select id="guideSelect" name="guide">
+            <option value="Ravi Kumar">Ravi Kumar</option>
+            <option value="Anita Sharma">Anita Sharma</option>
+          </select>
+        </label>
+        <label>Preferred Language<br>
+          <select id="languageSelect" name="language">
+            <option value="English">English</option>
+            <option value="Hindi">Hindi</option>
+            <option value="Tamil">Tamil</option>
+            <option value="Telugu">Telugu</option>
+            <option value="Kannada">Kannada</option>
+            <option value="Malayalam">Malayalam</option>
+            <option value="Marathi">Marathi</option>
+          </select>
+        </label>
+      </div><br>
+      <label>Special Requests<br><textarea name="requests" placeholder="Any special requests (e.g., accessibility, photo permissions)"></textarea></label><br>
+      <button class="btn" type="submit">Submit Booking</button>
+    </form>
+  </div>
+</section>
+
+<!-- USER: Feedback Form -->
+<section class="section" id="temple-feedback">
+  <h2>Temple Feedback</h2>
+  <div class="card">
+    <form id="feedbackForm">
+      <div class="two-col">
+        <label>Your Name<br><input name="name" type="text" required></label>
+        <label>Temple Visited<br>
+          <select name="temple">
+            <option>Brihadeeswarar Temple</option>
+            <option>Meenakshi Amman Temple</option>
+            <option>Konark Sun Temple</option>
+          </select>
+        </label>
+      </div><br>
+      <label>Rating<br>
+        <select name="rating">
+          <option value="5">5 - Excellent</option>
+          <option value="4">4 - Good</option>
+          <option value="3">3 - Average</option>
+          <option value="2">2 - Poor</option>
+          <option value="1">1 - Very Poor</option>
+        </select>
+      </label><br><br>
+      <label>Feedback<br><textarea name="feedback" style="height:80px"></textarea></label><br><br>
+      <label>Upload Photo (optional)<br><input type="file" accept="image/*" name="photo"></label><br><br>
+      <button class="btn" type="submit">Submit Feedback</button>
+    </form>
+  </div>
+</section>
+
+<!-- USER: Temple Suggestion Form -->
+<section class="section" id="temple-suggestion">
+  <h2>Suggest a New Temple</h2>
+  <div class="card">
+    <form id="suggestionForm">
+      <label>Temple Name<br><input name="name" type="text" required></label><br><br>
+      <label>City / State<br><input name="location" type="text" required></label><br><br>
+      <label>Why Should We Add It?<br><textarea name="why" style="height:80px"></textarea></label><br><br>
+      <label>Upload Image (optional)<br><input type="file" accept="image/*" name="image"></label><br><br>
+      <button class="btn" type="submit">Submit Suggestion</button>
+    </form>
+  </div>
+</section>
+
+<!-- ADMIN: Add New Temple Form -->
+<section class="section" id="admin-add-temple" style="display:none;">
+  <h2>Admin – Add New Temple</h2>
+  <div class="card">
+    <form id="adminAddTempleForm">
+      <label>Temple Name<br><input name="name" type="text" required></label><br><br>
+      <label>Location<br><input name="location" type="text" required></label><br><br>
+      <label>State<br><input name="state" type="text" required></label><br><br>
+      <label>Built Year<br><input name="year" type="number"></label><br><br>
+      <label>Temple Type<br>
+        <select name="type">
+          <option>Dravidian</option>
+          <option>Nagara</option>
+          <option>Cave Temple</option>
+          <option>Jain Temple</option>
+          <option>Buddhist Temple</option>
+        </select>
+      </label><br><br>
+      <label>Description<br><textarea name="description" style="height:80px"></textarea></label><br><br>
+      <label>Opening Hours<br><input name="hours" type="text" placeholder="6 AM - 9 PM"></label><br><br>
+      <label>Entry Fees<br><input name="fees" type="text"></label><br><br>
+      <label>Major Festivals<br><input name="festivals" type="text"></label><br><br>
+      <label>Upload Temple Image<br><input type="file" accept="image/*" name="image"></label><br><br>
+      <button class="btn" type="submit">Add Temple</button>
+    </form>
+  </div>
+</section>
+
+<!-- ADMIN LOGIN + DASHBOARD -->
+<section class="section" id="admin-login" style="margin-top:40px;">
+  <h2>Admin Login</h2>
+  <div class="card" style="max-width:400px;">
+    <form id="adminLoginForm">
+      <label>Username<br><input type="text" id="adminUser" required aria-label="admin username"></label><br><br>
+      <label>Password<br><input type="password" id="adminPass" required aria-label="admin password"></label><br><br>
+      <button class="btn" type="submit">Login</button>
+    </form>
+  </div>
+</section>
+
+<section class="section" id="admin" style="display:none;margin-top:40px;">
+  <h2>Admin Dashboard</h2>
+  <div class="card">
+    <h3>Manage Temples</h3>
+    <button class="btn" id="showAddTemple">Add New Temple</button>
+    <button class="btn" onclick="alert('Edit Temple feature coming soon!')">Edit Existing Temples</button>
+  </div>
+  <div class="card">
+    <h3>Manage Guides</h3>
+    <button class="btn" onclick="alert('Add Guide feature coming soon!')">Add New Guide</button>
+    <button class="btn" onclick="alert('Edit Guide feature coming soon!')">Edit Existing Guides</button>
+  </div>
+  <div class="card">
+    <h3>View Bookings</h3>
+    <button class="btn" onclick="alert('Booking list coming soon!')">Show All Bookings</button>
+  </div>
+</section>
+
+<footer>
+  © 2025 TempleTrails — Preserving Heritage With Technology
+</footer>
+
+<script>
+// --- Autosuggest search (client-side demo list) ---
+const temples = [
+  'Brihadeeswarar Temple','Meenakshi Amman Temple','Virupaksha Temple',
+  'Golden Temple Vellore','Somnath Temple','Kedarnath Temple',
+  'Puri Jagannath Temple','Konark Sun Temple'
+];
+
+const searchBar = document.getElementById('searchBar');
+const suggestions = document.getElementById('suggestions');
+const results = document.getElementById('results');
+
+if (searchBar) {
+  searchBar.addEventListener('keyup', () => {
+    const query = searchBar.value.trim().toLowerCase();
+    suggestions.innerHTML = '';
+    if (!query) { suggestions.style.display = 'none'; results.innerHTML = ''; return }
+    const filtered = temples.filter(t => t.toLowerCase().includes(query));
+    suggestions.style.display = filtered.length ? 'block' : 'none';
+    filtered.forEach(item => {
+      const div = document.createElement('div');
+      div.textContent = item;
+      div.tabIndex = 0;
+      div.onclick = () => { searchBar.value = item; suggestions.style.display = 'none'; showResults([item]) };
+      div.onkeydown = (e) => { if (e.key === 'Enter') { div.onclick() } };
+      suggestions.appendChild(div);
+    });
+    // also show simple result cards
+    showResults(filtered);
+  });
+} else {
+  console.warn('Search bar not found in DOM');
+}
+
+function showResults(list) {
+  results.innerHTML = '';
+  if (!list || list.length === 0) return;
+  list.forEach(name => {
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.innerHTML = `<h3>${name}</h3><p>Click book to connect with an expert guide for ${name}.</p><a class="btn" href="#temple-visit-booking">Book Guide</a>`;
+    results.appendChild(card);
+  });
+}
+
+// --- Auto-filter guides by language (fixed selectors with IDs) ---
+const guideData = {
+  English: ['Ravi Kumar','Anita Sharma'],
+  Hindi: ['Anita Sharma'],
+  Tamil: ['Ravi Kumar'],
+  Telugu: ['Ravi Kumar'],
+  Kannada: ['Ravi Kumar'],
+  Malayalam: ['Ravi Kumar'],
+  Marathi: ['Anita Sharma']
+};
+
+const guideSelect = document.getElementById('guideSelect');
+const languageSelect = document.getElementById('languageSelect');
+
+function populateGuidesForLang(lang) {
+  const list = guideData[lang] || [];
+  guideSelect.innerHTML = '';
+  if (list.length === 0) {
+    const opt = document.createElement('option');
+    opt.value = '';
+    opt.textContent = 'No guides available';
+    guideSelect.appendChild(opt);
+    return;
+  }
+  list.forEach(g => {
+    const opt = document.createElement('option');
+    opt.value = g;
+    opt.textContent = g;
+    guideSelect.appendChild(opt);
+  });
+}
+
+if (languageSelect && guideSelect) {
+  populateGuidesForLang(languageSelect.value);
+  languageSelect.addEventListener('change', () => {
+    populateGuidesForLang(languageSelect.value);
+  });
+} else {
+  console.warn('Guide select or language select not found (booking section may be malformed)');
+}
+
+// --- Booking form handling (demo only) ---
+const bookingForm = document.getElementById('visitBookingForm');
+if (bookingForm) {
+  bookingForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const data = new FormData(bookingForm);
+    const payload = Object.fromEntries(data.entries());
+    alert('Booking submitted — (demo)\\n' + JSON.stringify(payload, null, 2));
+    bookingForm.reset();
+    // After reset, repopulate guides for default language
+    if (languageSelect && guideSelect) populateGuidesForLang(languageSelect.value);
+  });
+}
+
+// Quick booking form
+const quickBookingForm = document.getElementById('quickBookingForm');
+if (quickBookingForm) {
+  quickBookingForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const payload = Object.fromEntries(new FormData(quickBookingForm).entries());
+    alert('Quick booking received (demo)\\n' + JSON.stringify(payload, null, 2));
+    quickBookingForm.reset();
+  });
+}
+
+// Feedback form
+const feedbackForm = document.getElementById('feedbackForm');
+if (feedbackForm) {
+  feedbackForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const payload = Object.fromEntries(new FormData(feedbackForm).entries());
+    alert('Thank you for your feedback (demo)\\n' + JSON.stringify(payload, null, 2));
+    feedbackForm.reset();
+  });
+}
+
+// Suggestion form
+const suggestionForm = document.getElementById('suggestionForm');
+if (suggestionForm) {
+  suggestionForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const payload = Object.fromEntries(new FormData(suggestionForm).entries());
+    alert('Suggestion submitted (demo)\\n' + JSON.stringify(payload, null, 2));
+    suggestionForm.reset();
+  });
+}
+
+// Admin add temple form
+const adminAddTempleForm = document.getElementById('adminAddTempleForm');
+if (adminAddTempleForm) {
+  adminAddTempleForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const payload = Object.fromEntries(new FormData(adminAddTempleForm).entries());
+    alert('Temple added (demo)\\n' + JSON.stringify(payload, null, 2));
+    adminAddTempleForm.reset();
+  });
+}
+
+// --- Simple admin login (front-end demo only) ---
+const adminForm = document.getElementById('adminLoginForm');
+if (adminForm) {
+  adminForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const user = document.getElementById('adminUser').value;
+    const pass = document.getElementById('adminPass').value;
+    if (user === 'admin' && pass === 'temple123') {
+      document.getElementById('admin-login').style.display = 'none';
+      document.getElementById('admin').style.display = 'block';
+      document.getElementById('admin-add-temple').style.display = 'block';
+      alert('Admin login successful! (demo)');
+      // scroll to admin dashboard
+      document.getElementById('admin').scrollIntoView({behavior:'smooth'});
+    } else {
+      alert('Invalid credentials');
+    }
+  });
+}
+
+// show add temple button handler
+const showAddTempleBtn = document.getElementById('showAddTemple');
+if (showAddTempleBtn) {
+  showAddTempleBtn.addEventListener('click', () => {
+    document.getElementById('admin-add-temple').scrollIntoView({behavior:'smooth'});
+  });
+}
+</script>
+</body>
+</html>
